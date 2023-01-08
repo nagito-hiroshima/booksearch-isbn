@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書籍検索</title>
+    <style>
+            table {
+      background-color: #ffe;
+      border-collapse: collapse;
+    }
+    table th {
+        width: 100px;
+      background-color: #eee;
+    }
+    table th, table td {
+      border: solid 1px #aaa;
+      padding:15px;
+    }
+    table td{
+        width: 80vw;
+    }
+    </style>
+</head>
+
+<body>
+   
+    <textarea id="area"></textarea>
+    <button onclick="test(document.getElementById('area').value)">検索</button>
+
+    <div id="img"></div>
+    <table id="books_tbl">
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        </tbody>
+    </table>
+</body>
+
+
+<script>
+    let Data
+    function test(isbns) {
+        if(isbns==""){
+            return
+        }else{
+        fetch('https://api.openbd.jp/v1/get?isbn=' + isbns)
+            .then((response) => response.json())
+            .then((data) => Data = data)
+
+        setTimeout(() => {
+
+            console.log(Data)
+
+            document.getElementById("img").innerHTML = "<img src=" + Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink + ">"
+            datas = ["", "", 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.collationkey', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.content', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.collationkey', 'Data[0].onix.PublishingDetail.Publisher.PublisherName', 'Data[0].onix.PublishingDetail.PublishingDate[0].Date', '(Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentType) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentUnit) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentValue))', 'Data[0].onix.DescriptiveDetail.Subject[0].SubjectCode', 'Data[0].onix.CollateralDetail.TextContent[1].Text', 'Data[0].onix.DescriptiveDetail.Contributor[0].BiographicalNote', 'Data[0].onix.DescriptiveDetail.Subject[2].SubjectHeadingText', 'Data[0].onix.ProductSupply.SupplyDetail.Price[0].PriceAmount','Data[0].onix.RecordReference']
+            subject = ["", "", "タイトル", "タイトルカナ", "サブタイトル", "サブタイトルかな", "シリーズ", "シリーズかな", "著者", "著者かな", "出版社", "出版日", "ページ数", "分類", "内容紹介", "著者紹介", "キーワード", "価格","ISBN"]
+            datas_arry = []
+            for (i = 2; i < 19; i++) {
+                try {
+                    datas_arry[i] = eval(datas[i])
+                    if (datas_arry[i] == undefined) {
+                        datas_arry[i] = "-"
+                    }
+                } catch (e) {
+                    datas_arry[i] = "-"
+                }
+                document.getElementById("books_tbl").rows[i-2].cells[1].innerHTML = datas_arry[i]
+                document.getElementById("books_tbl").rows[i-2].cells[0].innerHTML = subject[i]
+            }
+            document.getElementById("img").innerHTML = "<img src=" + Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink + ">"
+
+        }, 3000);
+    }}
+    test("4815615608")
+</script>
+
+</html>
