@@ -31,136 +31,137 @@
 </head>
 
 <body>
-    <textarea id="area"></textarea>
-    <button onclick="test(document.getElementById('area').value)">検索</button>
+    <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script>
+        function test() {
+            var table = document.getElementById('foo-table');  //表のオブジェクトを取得
+/*
+            for (j = 1; j < jsonObj.length; j++) {
+                var row = table.insertRow(-1);  //行末に行(tr要素)を追加
+                var cell = row.insertCell(0);  //セル(td要素)の追加
+                for (q = 1; q < 24; q++) {
+                    eval('var cell' + q + ' = row.insertCell(' + q + ');')
+                }
 
-    <div id="img"></div>
-    <table id="books_tbl">
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
+                cell.innerHTML = "<img class='book_img' src='" + jsonObj[j][17] + "'>"
+                for (i = 1; i < 24; i++) {
+                    eval('cell' + i + '.innerHTML= "<div class=table"+'+i+' +">" + jsonObj[' + j + '][' + (i - 1) + ']+" </div>"')
+                }
+            }
+            */
+
+
+            for (j = 1; j < jsonObj.length; j++) {
+                var row = table.insertRow(-1);  //行末に行(tr要素)を追加
+                var cell = row.insertCell(0);  //セル(td要素)の追加
+                for (q = 1; q < 25; q++) {
+                    eval('var cell' + q + ' = row.insertCell(' + q + ');')
+                }
+
+                cell.innerHTML = "<img class='book_img' src='" + jsonObj[j][17] + "'>"
+
+                cell1.innerHTML = "<div class='book_view'><div class='book_title'>"+jsonObj[j][1]+"</div><div class='book_name'>"+jsonObj[j][7]+"</div><div class='book_cp'> "+jsonObj[j][9]+"</div><div class='book_data'>"+jsonObj[1][10].substr(0,10)+"</div></div>"
+                for (i = 2; i < 25; i++) {
+                    eval('cell' + i + '.innerHTML= "<div class=table"+'+i+' +">" + jsonObj[' + j + '][' + (i - 2) + ']+" </div>"')
+                }
+
+            }
+
+
+            table.deleteRow(1);
+
+            jQuery(function ($) {
+                // デフォルトの設定を変更
+                $.extend($.fn.dataTable.defaults, {
+                    language: {
+                        url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+                    },
+                    columnDefs: [
+                        // 1列目を消す(visibleをfalseにすると消えます)
+                    
+                        { targets: 2, visible: false },
+                        { targets: 3, visible: false },
+                        { targets: 4, visible: false },
+                        { targets: 5, visible: false },
+                        { targets: 6, visible: false },
+                        { targets: 7, visible: false },
+                        { targets: 8, visible: false },
+                        { targets: 9, visible: false },
+                        { targets: 10, visible: false },
+                        { targets: 11, visible: false },
+                        { targets: 12, visible: false },
+                        { targets: 13, visible: false },
+                        { targets: 14, visible: false },
+                        { targets: 15, visible: false },
+                        { targets: 16, visible: false },
+                        { targets: 17, visible: false },
+
+                        { targets: 18, visible: false },
+                        { targets: 19, visible: false },
+                        { targets: 20, visible: false },
+                        { targets: 21, visible: false },
+                        { targets: 22, visible: false },
+                        { targets: 24, visible: false },
+                    ]
+                });
+                $("#foo-table").DataTable();
+            });
+        }
+
+        send("book_cheak")
+
+
+    </script>
+
+    <table id="foo-table" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>本の画像</th>
+                <th>一覧</th>
+                <th>ISBN</th>
+                <th>タイトル</th>
+                <th>タイトルかな</th>
+                <th>サブタイトル</th>
+                <th>サブタイトルかな</th>
+                <th>シリーズ</th>
+                <th>シリーズかな</th>
+                <th>著者</th>
+                <th>著者かな</th>
+                <th>出版社</th>
+                <th>出版日</th>
+                <th>ページ数</th>
+                <th>分類</th>
+                <th>内容紹介</th>
+                <th>著者紹介</th>
+                <th>キーワード</th>
+                <th>価格</th>
+                <th>画像</th>
+                <th>登録数</th>
+                <th>予約数</th>
+                <th>貸出数</th>
+                <th>在庫数</th>
+                <th>貸し出し許可</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
         </tbody>
     </table>
 </body>
 
 
 <script>
-    let Data
-    const datas = ["", "", 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.collationkey', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.content', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.collationkey', 'Data[0].onix.PublishingDetail.Publisher.PublisherName', 'Data[0].onix.PublishingDetail.PublishingDate[0].Date', '(Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentType) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentUnit) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentValue))', 'Data[0].onix.DescriptiveDetail.Subject[0].SubjectCode', 'Data[0].onix.CollateralDetail.TextContent[1].Text', 'Data[0].onix.DescriptiveDetail.Contributor[0].BiographicalNote', 'Data[0].onix.DescriptiveDetail.Subject[2].SubjectHeadingText', 'Data[0].onix.ProductSupply.SupplyDetail.Price[0].PriceAmount', 'Data[0].onix.RecordReference']
-    const subject = ["", "", "タイトル", "タイトルカナ", "サブタイトル", "サブタイトルかな", "シリーズ", "シリーズかな", "著者", "著者かな", "出版社", "出版日", "ページ数", "分類", "内容紹介", "著者紹介", "キーワード", "価格", "ISBN"]
-    let datas_arry = []
-    
-    function test(isbns) {
-        if (isbns == "") {
-            return
-        } else {
-            fetch('https://api.openbd.jp/v1/get?isbn=' + isbns)
-                .then((response) => response.json())
-                .then((data) => Data = data)
-
-            setTimeout(() => {
-                console.log(Data)
 
 
-                for (i = 2; i < 19; i++) {
-                    try {
-                        datas_arry[i] = eval(datas[i])
-                        if (datas_arry[i] == undefined) {
-                            datas_arry[i] = "-"
-                        }
-                        if (i == 17) {
-                            if (!datas_arry[i] || datas_arry[i] != "-") {
-                                datas_arry[i] = datas_arry[i] + "円"
-                            }
-                        }
-                        if (i == 11) {
-                            if (!datas_arry[i] || datas_arry[i] != "-") {
-                                datas_arry[11]=datas_arry[11].substring(0,4)+"/"+datas_arry[11].substring(4,6)+"/"+datas_arry[11].substring(6)
-
-                           }
-
-                        }
-                    } catch (e) {
-                        datas_arry[i] = "-"
-                    }
-                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = datas_arry[i]
-                    document.getElementById("books_tbl").rows[i - 2].cells[0].innerHTML = subject[i]
-                }
-                document.getElementById("img").innerHTML = "<img src=" + Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink + ">"
-
-                for (let i = 0; i < 19; i++) {
-                    datas_arry[i] = encodeURIComponent(datas_arry[i])
-                }
-                send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink, "kyoka")
-            }, 3000);
-        }
-    }
-    test("4815615608")
 </script>
 
 </html>

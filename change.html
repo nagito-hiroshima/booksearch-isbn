@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./logsend.js"></script>
+    <title>書籍検索</title>
+    <style>
+        table {
+            background-color: #ffe;
+            border-collapse: collapse;
+        }
+
+        table th {
+            width: 100px;
+            background-color: #eee;
+        }
+
+        table th,
+        table td {
+            border: solid 1px #aaa;
+            padding: 15px;
+        }
+
+        table td {
+            width: 80vw;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id="area"></textarea>
+    <button onclick="test(document.getElementById('area').value)">検索</button>
+
+    <div id="img"></div>
+    <table id="books_tbl">
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>貸出許可</th>
+            <td><select id="options"><option>許可</option><option>禁止</option></select></td>
+        </tr>
+        </tbody>
+    </table>
+    <button onclick="register()">登録</button>
+</body>
+
+
+<script>
+    let Data
+    const datas = ["", "", 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.collationkey', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.content', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.collationkey', 'Data[0].onix.PublishingDetail.Publisher.PublisherName', 'Data[0].onix.PublishingDetail.PublishingDate[0].Date', '(Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentType) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentUnit) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentValue))', 'Data[0].onix.DescriptiveDetail.Subject[0].SubjectCode', 'Data[0].onix.CollateralDetail.TextContent[1].Text', 'Data[0].onix.DescriptiveDetail.Contributor[0].BiographicalNote', 'Data[0].onix.DescriptiveDetail.Subject[2].SubjectHeadingText', 'Data[0].onix.ProductSupply.SupplyDetail.Price[0].PriceAmount', 'Data[0].onix.RecordReference']
+    const subject = ["", "", "タイトル", "タイトルカナ", "サブタイトル", "サブタイトルかな", "シリーズ", "シリーズかな", "著者", "著者かな", "出版社", "出版日", "ページ数", "分類", "内容紹介", "著者紹介", "キーワード", "価格", "ISBN"]
+    let datas_arry = []
+
+    function test(isbns) {
+        if (isbns == "") {
+            return
+        } else {
+            conso
+    }
+}
+    test("4815615608")
+
+    function register(){
+        for (i=2;i<19;i++){
+            datas_arry[i] = encodeURIComponent(document.getElementById("books"+i).value)
+            console.log(datas_arry[i])
+        }
+        send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink,encodeURIComponent(document.getElementById("options").value))
+    }
+
+</script>
+
+</html>
