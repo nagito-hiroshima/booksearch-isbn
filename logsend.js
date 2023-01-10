@@ -1,9 +1,9 @@
-let jsonObj
-function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19) {
+let jsonObj, flag = false
+function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19,key20) {
         xhr = new XMLHttpRequest()
         xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyOBgvJG2v2xqtAHXU_wmFixyYxRHEPsyykDd5disH6zVmxMY4SUE6QcwGn9fOkGA1e/exec', true);
         xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-        var request = "mode=" + mode + "&key1=" + key1 + "&key2=" + key2 + "&key3=" + key3 + "&key4=" + key4 + "&key5=" + key5 + "&key6=" + key6 + "&key7=" + key7 + "&key8=" + key8 + "&key9=" + key9 + "&key10=" + key10 + "&key11=" + key11 + "&key12=" + key12 + "&key13=" + key13 + "&key14=" + key14 + "&key15=" + key15 + "&key16=" + key16 + "&key17=" + key17 + "&key18=" + key18 + "&key19=" + key19
+        var request = "mode=" + mode + "&key1=" + key1 + "&key2=" + key2 + "&key3=" + key3 + "&key4=" + key4 + "&key5=" + key5 + "&key6=" + key6 + "&key7=" + key7 + "&key8=" + key8 + "&key9=" + key9 + "&key10=" + key10 + "&key11=" + key11 + "&key12=" + key12 + "&key13=" + key13 + "&key14=" + key14 + "&key15=" + key15 + "&key16=" + key16 + "&key17=" + key17 + "&key18=" + key18 + "&key19=" + key19+"&key20=" + key20
         xhr.send(request);
 
 
@@ -15,11 +15,26 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         jsonObj = JSON.parse(xhr.responseText);
                         console.log(jsonObj)
 
-                        test()
+                        if (mode == "register") {
 
+                        } else if (mode == "book_num") {
+                                okk(jsonObj, key1)
+
+                        }
                 }
         }
 
 
 }
 
+function okk(jsonObj, isbn) {
+        for (i = 1; i < jsonObj.length; i++) {
+                if (jsonObj[i][0] == isbn) {
+
+        document.getElementById("changes_button").style.display = "block" ;
+                        document.getElementById("number").value = jsonObj[i][21]
+                        return
+                }
+        }
+        document.getElementById("number").value = 1
+}
