@@ -32,25 +32,13 @@
 
 <body>
     <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
+    
+    <link rel="stylesheet" href="./test.css" />
+   
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <script>
         function test() {
             var table = document.getElementById('foo-table');  //表のオブジェクトを取得
-/*
-            for (j = 1; j < jsonObj.length; j++) {
-                var row = table.insertRow(-1);  //行末に行(tr要素)を追加
-                var cell = row.insertCell(0);  //セル(td要素)の追加
-                for (q = 1; q < 24; q++) {
-                    eval('var cell' + q + ' = row.insertCell(' + q + ');')
-                }
-
-                cell.innerHTML = "<img class='book_img' src='" + jsonObj[j][17] + "'>"
-                for (i = 1; i < 24; i++) {
-                    eval('cell' + i + '.innerHTML= "<div class=table"+'+i+' +">" + jsonObj[' + j + '][' + (i - 1) + ']+" </div>"')
-                }
-            }
-            */
-
 
             for (j = 1; j < jsonObj.length; j++) {
                 var row = table.insertRow(-1);  //行末に行(tr要素)を追加
@@ -96,13 +84,13 @@
                         { targets: 15, visible: false },
                         { targets: 16, visible: false },
                         { targets: 17, visible: false },
-
                         { targets: 18, visible: false },
                         { targets: 19, visible: false },
                         { targets: 20, visible: false },
                         { targets: 21, visible: false },
                         { targets: 22, visible: false },
-                        { targets: 24, visible: false },
+                        { targets: 24, visible: false }
+
                     ]
                 });
                 $("#foo-table").DataTable();

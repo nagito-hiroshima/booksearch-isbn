@@ -1,0 +1,12 @@
+#foo-table_wrapper{
+    padding: 50px;
+}
+
+.book_img{
+    height: 80px;
+}
+
+.sorting_asc,.sorting_1,.dataTables_empty{
+    text-align: center;
+    max-width: 80px;
+}
