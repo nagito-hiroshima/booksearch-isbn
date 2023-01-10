@@ -22,11 +22,15 @@ table td {
 display: none
 }
 .box{
-width: 90%;
+min-width: 90%;
+max-width: 90%;
 height: 30px;
 }
 
 #books14,#books15,#books16{
 height: 150px;
 
+}
+.box:read-only{
+    background-color: rgba(0, 0, 0, 0.265);
 }
