@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./oi.css" />
- 
+
     <script src="./logsend.js"></script>
     <title>書籍検索</title>
     <style>
@@ -98,7 +98,7 @@
         </tr>
         <tr>
             <th>登録数</th>
-            <td ><input id="number" type="text"></td>
+            <td><input id="number" type="text"></td>
         </tr>
         </tbody>
     </table>
@@ -109,18 +109,18 @@
 
 
 <script>
-function mode_changes(id){
-    if(eval('document.getElementById("books'+id+'").readOnly')){
+    function mode_changes(id) {
+        if (eval('document.getElementById("books' + id + '").readOnly')) {
 
-    eval('document.getElementById("books'+id+'").readOnly = false;')
-    eval('document.getElementById("mode_change_button'+id+'").innerHTML ="完了";')
-    }else{
+            eval('document.getElementById("books' + id + '").readOnly = false;')
+            eval('document.getElementById("mode_change_button' + id + '").innerHTML ="完了";')
+        } else {
 
-        eval('document.getElementById("books'+id+'").readOnly = true;')
-        eval('document.getElementById("mode_change_button'+id+'").innerHTML = "修正";')
+            eval('document.getElementById("books' + id + '").readOnly = true;')
+            eval('document.getElementById("mode_change_button' + id + '").innerHTML = "修正";')
+        }
+
     }
-
-}
 
     let Data
     const datas = ["", "", 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.collationkey', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.content', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.collationkey', 'Data[0].onix.PublishingDetail.Publisher.PublisherName', 'Data[0].onix.PublishingDetail.PublishingDate[0].Date', '(Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentType) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentUnit) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentValue))', 'Data[0].onix.DescriptiveDetail.Subject[0].SubjectCode', 'Data[0].onix.CollateralDetail.TextContent[1].Text', 'Data[0].onix.DescriptiveDetail.Contributor[0].BiographicalNote', 'Data[0].onix.DescriptiveDetail.Subject[2].SubjectHeadingText', 'Data[0].onix.ProductSupply.SupplyDetail.Price[0].PriceAmount', 'Data[0].onix.RecordReference']
@@ -161,7 +161,7 @@ function mode_changes(id){
                     } catch (e) {
                         datas_arry[i] = "-"
                     }
-                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = '<textarea readonly class="box" id=books' + i + ' type="text" >'+datas_arry[i]+'</textarea><button id="mode_change_button'+i+'" onclick="mode_changes('+i+')">修正</button>'
+                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = '<textarea readonly class="box" id=books' + i + ' type="text" >' + datas_arry[i] + '</textarea><button id="mode_change_button' + i + '" onclick="mode_changes(' + i + ')">修正</button>'
                     document.getElementById("books_tbl").rows[i - 2].cells[0].innerHTML = subject[i]
 
                 }
@@ -176,7 +176,7 @@ function mode_changes(id){
             datas_arry[i] = encodeURIComponent(document.getElementById("books" + i).value)
             console.log(datas_arry[i])
         }
-        send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink, encodeURIComponent(document.getElementById("options").value),Number(document.getElementById("number").value)+1)
+        send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink, encodeURIComponent(document.getElementById("options").value), Number(document.getElementById("number").value) + 1)
     }
 
     function cheanges() {
@@ -184,36 +184,36 @@ function mode_changes(id){
             datas_arry[i] = encodeURIComponent(document.getElementById("books" + i).value)
             console.log(datas_arry[i])
         }
-        send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink, encodeURIComponent(document.getElementById("options").value),document.getElementById("number").value)
+        send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink, encodeURIComponent(document.getElementById("options").value), document.getElementById("number").value)
     }
 
     let texts
-document.addEventListener('keypress', keypress_ivent);
-document.addEventListener('keyup', keyup_ivent);
+    document.addEventListener('keypress', keypress_ivent);
+    document.addEventListener('keyup', keyup_ivent);
 
-function keyup_ivent(e) {
-    if (e.key == "Backspace") {
-        texts = ""
-        document.getElementById("keyview").innerHTML = texts
-    }
-    return;
-}
-
-function keypress_ivent(e) {
-    //いずれかのキーが押された時の処理
-    if (e.key != 'Enter') {
-        if (texts) {
-            texts = texts + e.key
-        } else {
-            texts = e.key
+    function keyup_ivent(e) {
+        if (e.key == "Backspace") {
+            texts = ""
+            document.getElementById("keyview").innerHTML = texts
         }
-    } else if (e.key == "Enter" && texts.length >= 7) {
-        test(texts)
-        texts = ""
+        return;
     }
-    document.getElementById("keyview").innerHTML = texts
-    return false;
-}
+
+    function keypress_ivent(e) {
+        //いずれかのキーが押された時の処理
+        if (e.key != 'Enter') {
+            if (texts) {
+                texts = texts + e.key
+            } else {
+                texts = e.key
+            }
+        } else if (e.key == "Enter" && texts.length >= 7) {
+            test(texts)
+            texts = ""
+        }
+        document.getElementById("keyview").innerHTML = texts
+        return false;
+    }
 
 </script>
 
